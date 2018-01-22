@@ -12,10 +12,9 @@ typedef struct test_s1{
 
 
 typedef struct test_s{
-    int* s;
     char r;
     char t;
-    char q;
+    char *q;
 }test_t;
 
 typedef struct structd_tag
@@ -29,8 +28,15 @@ typedef struct structd_tag
 
 int main(void)
 {
-    printf("Size: %lu s:%lu r:%lu t:%lu q:%lu \n", sizeof(test_t),
-            OFFSET_OFF(test_t,s),
+    test_t arr[2];
+    char *p;
+    char r;
+    int q;
+
+    printf("Size %lu %p %p \n", sizeof(arr), &arr[0], &arr[1]);
+    printf("%p %p %p\n", &p, &r, &q);
+    printf("r-q=%p, p-r=%p\n", (char*)&r-(char*)&q, (char*)&p-(char*)&r);
+    printf("Size: %lu  r:%lu t:%lu q:%lu \n", sizeof(test_t),
             OFFSET_OFF(test_t, r),
             OFFSET_OFF(test_t, t),
             OFFSET_OFF(test_t, q));

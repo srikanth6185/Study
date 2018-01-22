@@ -11,7 +11,7 @@ Affected attrubutes of the program:
 -------------------------------------------------------------------------
 1. Speed
 2. Atomicity
- 
+
 Structure Padding
 -------------------------------------------------------------------------
 Generally its 4 or 8 byte aligned.
@@ -31,11 +31,15 @@ padding 6,7
 
 This is to ensure an array of the struct the int always ends up at 4 bytes aligned address.
 
+Structure or stack padding is done such that any variable or field in the structure can be read
+as efficiently as possible. Example pointers are 8 byte aligned. That way we can always reach
+the pointer value in a single read. A character and an int can be combined within a 8 byte
+boundary. This way either variable or field can be read in a single read operation.
 
+Assumption:
+64 bit architecture. For 32 bit its generally 4 byte aligned.
 
-
-
-
+Check test program for more details.
 
 
 
